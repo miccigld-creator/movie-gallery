@@ -275,6 +275,8 @@
     }
 
     .poster img.ready { opacity: 1; }
+    .poster-placeholder { transition: opacity .2s ease; }
+    .poster.has-image .poster-placeholder { opacity: 0; visibility: hidden; }
 
     .movie-card:hover .poster img { transform: scale(1.045); }
 
@@ -613,6 +615,14 @@
       return (words[0][0] + words[1][0]).toUpperCase();
     }
 
+    function applyPoster(img, source) {
+      img.addEventListener('load', function () {
+        img.classList.add('ready');
+        img.parentElement.classList.add('has-image');
+      }, { once: true });
+      img.src = source;
+    }
+
     function pumpPosterQueue() {
       while (activePosterLoads < 4 && posterQueue.length) {
         const item = posterQueue.shift();
@@ -628,8 +638,7 @@
             const source = data && data.thumbnail && data.thumbnail.source ? data.thumbnail.source : null;
             posterCache.set(item.wiki, source);
             if (source && item.img.isConnected) {
-              item.img.src = source;
-              item.img.classList.add('ready');
+              applyPoster(item.img, source);
             } else if (item.img.isConnected) {
               item.img.parentElement.classList.add('no-image');
             }
@@ -649,8 +658,7 @@
       if (posterCache.has(wiki)) {
         const cached = posterCache.get(wiki);
         if (cached) {
-          img.src = cached;
-          img.classList.add('ready');
+          applyPoster(img, cached);
         } else {
           img.parentElement.classList.add('no-image');
         }
