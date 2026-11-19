@@ -533,8 +533,8 @@
     </main>
 
     <footer class="footer">
-      <p>56 titles · Movie details are concise editorial summaries.</p>
-      <p>Poster thumbnails load from Wikipedia when available. Movie links open in a new tab.</p>
+      <p><span id="footer-count">80</span> titles · Concise film summaries.</p>
+      <p>Movie-specific poster artwork with fallback thumbnails. Movie links open in a new tab.</p>
     </footer>
   </div>
 
@@ -619,6 +619,9 @@
       { id: 1175942, title: "The Bad Guys 2", year: 2025, wiki: "The Bad Guys 2", poster: "https://i.imgur.com/9HjZwTv.jpeg", summary: "The reformed Bad Guys are pulled into a globe-spanning heist after a new criminal crew hijacks their plans.", url: "https://www.streamex.hn/watch/movie/1175942?server=vidy" },
       { id: 153518, title: "The Angry Birds Movie", year: 2016, wiki: "The Angry Birds Movie", poster: "https://www.impawards.com/2016/posters/angry_birds_xxlg.jpg", summary: "Three outcast birds investigate the arrival of mysterious green pigs on their peaceful island.", url: "https://www.streamex.hn/watch/movie/153518?server=vidy" },
       { id: 454640, title: "The Angry Birds Movie 2", year: 2019, wiki: "The Angry Birds Movie 2", poster: "https://image.tmdb.org/t/p/original/izUIgJaLCpg36twkhARETQVHbKP.jpg", summary: "Birds and pigs form an uneasy alliance when a new enemy threatens both of their islands.", url: "https://www.streamex.hn/watch/movie/454640?server=vidy" }
+      ,
+      { id: 567811, title: "10 Lives", year: 2024, wiki: "10 Lives", poster: "https://www.impawards.com/intl/uk/2024/posters/ten_lives_xxlg.jpg", summary: "A pampered cat loses his ninth life and is given another chance, returning in different forms that teach him to care for others.", url: "https://www.streamex.hn/watch/movie/567811?server=vidy" },
+      { id: 332210, title: "Storks", year: 2016, wiki: "Storks (2016 film)", poster: "https://www.impawards.com/2016/posters/storks_ver13_xlg.jpg", summary: "A top delivery stork and a human colleague must deliver an accidentally created baby before it causes chaos at the company.", url: "https://www.streamex.hn/watch/movie/332210?server=vidy" }
     ];
 
     const grid = document.getElementById('movie-grid');
@@ -632,6 +635,7 @@
     let posterObserver;
 
     document.getElementById('total-count').textContent = String(movies.length);
+    document.getElementById('footer-count').textContent = String(movies.length);
 
     function initialsFor(title) {
       const words = title.replace(/[^A-Za-z0-9 ]/g, ' ').trim().split(/\s+/).filter(Boolean);
